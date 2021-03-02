@@ -1,22 +1,25 @@
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-//** Creating variable being used to creat password.
+//** Creating variables for characters being used to creat password.
 var symbolChar = "!@#$%^&*(-+";
 var numberChar = "12345678910";
 var lowerCaseAlph = "abcdefghijklmnopqrstuvwxyz";
 var upperCaschar = "ABCDEFGHIJKLMNOPQTRSTU VWXYZ";
 var Combostring;
 
+//These are variables being used for capturing the length of the password.
  var lenghtselect = "";
  var length;
+
+ // These variable are booleans that will determine which characters will be include in the password.
  var isNumbers;
  var iscCapletters;
  var islowerletters;
  var isSymbols;
 
 
- 
+// Write password to the #password input 
 function writePassword() {
   
   var password = takingUI();
@@ -28,7 +31,7 @@ function writePassword() {
 
 // ** Collecting the length of the password from the user.
  function takingUI() {
-   
+    // applies conditions to the users lenght choice
   length = userLengthchoice();
 
    
@@ -43,7 +46,7 @@ function writePassword() {
        return;
    
       }
-      //console.log(length); 
+      // applies conditions to the users character choice 
 
      UserChoiceCharacters();
 
@@ -51,15 +54,13 @@ function writePassword() {
        alert("There were no options Selected for the password. Please Pick an option to create a password")
       return;
      }
-     
-     //console.log(length);
-     //console.log(isSymbols,iscCapletters,islowerletters, isSymbols, length);
+  
 
       return generatePassword();
 }
 
 
- 
+ //Prmpts user to input there password preferences and applies conditions.
 
  function UserChoiceCharacters(){
 
@@ -83,55 +84,20 @@ if (!opening) {
 
   
  }
+ //prompts user for the lenght choice
  function userLengthchoice() {
 
   lenghtselect = prompt("please enter a number between 08 and 128 for the password length?");
   return lenghtselect;
  }  
 
-
- //charactersSelect();
-
- /*const randomFunc ={
-
-  lower: getRandomletter,
-  upper: getRandomUppercase,
-  symbol: getRandomSymbol,
-  number: getRandomNumber
- };
-*/
-/* 
- function getRandomSymbol() {
-
-  var symbolChar = "!,@,#,$.%,^,&,*,(,-,+";
-
-  return symbolChar[Math.floor(Math.random() * symbolChar.length)];
-   
- }
- function getRandomNumber() {
-   var numberChar = [1,2,3,4,5,6,7,8,9,10];
-
-  return numberChar[Math.floor(Math.random() * numberChar.length)];
-   
- }
- function getRandomletter() {
-  var alphabetChar = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-  return alphabetChar[Math.floor(Math.random() * alphabetChar.length)];
-   
- }
- function getRandomUppercase(){
-  
-  return upperCaschar[Math.floor(Math.random() * upperCaschar.length)];
-
-}*/
-
+// creates the random password w/ users length and charater choices password
 
 function generatePassword() {
-  var passW;
+  var passW = "";
 
 if(isNumbers){
  Combostring += numberChar;
- 
 
 }
 if(isSymbols){
@@ -146,7 +112,7 @@ if(isSymbols){
   Combostring += upperCaschar;
  
  }
-
+//adds random characters to the password passed on the conditons above
  for (var i =0; i < length; i++) {
    
    var randomNumber = Math.floor(Math.random()* Combostring.length);
@@ -156,11 +122,6 @@ if(isSymbols){
 
   
 }
-
-
-
-// Write password to the #password input
-
 
  //Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
